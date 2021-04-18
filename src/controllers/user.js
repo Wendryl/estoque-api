@@ -22,7 +22,7 @@ class UserController {
         return res.status(401).end();
 
       const token = jwt.sign({ userValid }, process.env.JWT_SECRET, {
-        expiresIn: '5min'
+        expiresIn: '24h'
       })
 
       res.json({ token });
