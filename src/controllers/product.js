@@ -7,9 +7,12 @@ class ProductController {
     try {
 
       const result = await knex('Product')
-        .select('Product.*')
-        .select('Category.description')
-        .select('Company.name')
+        .select('Product.id')
+        .select('Product.description')
+        .select('Category.description as category')
+        .select('Company.name as provider')
+        .select('Product.price')
+        .select('Product.stock_quantity as quantity')
         .innerJoin('Category', 'Product.category_id', 'Category.id')
         .innerJoin('Company', 'Product.provider_id', 'Company.id');
 
