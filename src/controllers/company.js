@@ -12,7 +12,7 @@ class CompanyController {
 
     } catch(e) {
       console.error(e);
-      res.status(500);
+      res.status(500).end();
     }
 
   }
@@ -34,7 +34,7 @@ class CompanyController {
 
     } catch(e) {
       console.error(e);
-      res.status(500);
+      res.status(500).end();
     }
 
   }
@@ -50,7 +50,7 @@ class CompanyController {
 
     } catch(e) {
       console.error(e);
-      res.status(500);
+      res.status(500).end();
     }
 
   }
@@ -69,7 +69,7 @@ class CompanyController {
 
     } catch(e) {
       console.error(e);
-      res.status(500);
+      res.status(500).end();
     }
 
   }
@@ -87,7 +87,7 @@ class CompanyController {
 
     } catch(e) {
       console.error(e);
-      res.status(500);
+      res.status(500).end();
     }
 
   }
