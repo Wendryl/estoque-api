@@ -35,7 +35,7 @@ class CompanyController {
     } catch(e) {
       console.error(e);
       res.status(500);
-    }company_id
+    }
 
   }
 
