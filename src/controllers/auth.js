@@ -11,7 +11,6 @@ class Auth {
 
     const authType = (authHeader.split(' '))[0];
     const token = (authHeader.split(' '))[1];
-    console.log(token);
 
     if(authType !== 'Bearer')
       res.status(401).end();
