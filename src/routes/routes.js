@@ -7,8 +7,6 @@ const company = require('../controllers/company');
 
 router.post('/auth', user.authenticate);
 
-// router.get('/products', auth.verifyToken, product.list)
-// router.get('/products', auth.verifyToken, product.list)
 router.get('/companies', auth.verifyToken, company.list);
 router.get('/companies/:id', auth.verifyToken, company.find);
 router.post('/companies', auth.verifyToken, company.store);
