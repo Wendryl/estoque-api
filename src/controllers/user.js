@@ -34,6 +34,114 @@ class UserController {
 
   }
 
+  async list(req, res) {
+
+    try {
+
+      const result = await knex('User')
+        .select('User.id')
+        .select('Profile.description as profile')
+        .select('User.name')
+        .select('User.neighborhood')
+        .select('User.city')
+        .select('User.uf')
+        .select('User.email')
+        .select('User.phone')
+        .innerJoin('Profile', 'Profile.id', 'User.profile_id');
+
+      return res.json(result).end();
+
+    } catch(e) {
+      console.error(e);
+      res.status(500).end();
+    }
+
+  }
+
+  async find(req, res) {
+
+    try {
+
+      const userId = req.params.id;
+
+      const [result] = await knex('User')
+        .select('User.id')
+        .select('Profile.description as profile')
+        .select('User.name')
+        .select('User.neighborhood')
+        .select('User.city')
+        .select('User.uf')
+        .select('User.email')
+        .select('User.phone')
+        .innerJoin('Profile', 'Profile.id', 'User.profile_id')
+        .where('User.id', userId);
+
+      if(result.length < 1) {
+        return res.status(404).end();
+      }
+
+      return res.json(result).end();
+
+    } catch(e) {
+      console.error(e);
+      res.status(500).end();
+    }
+
+  }
+
+  async store(req, res) {
+
+    try {
+
+      const user = req.body;
+      const result = await knex('User').insert(user, 'id')
+
+      return res.json(result).end();
+
+    } catch(e) {
+      console.error(e);
+      res.status(500).end();
+    }
+
+  }
+
+  async alter(req, res) {
+
+    try {
+
+      const userId = req.params.id;
+      const user = req.body;
+
+      const result = await knex('Product').update(user)
+        .where('id', userId)
+
+      return res.json(result).end();
+
+    } catch(e) {
+      console.error(e);
+      res.status(500).end();
+    }
+
+  }
+
+  async destroy(req, res) {
+
+    try {
+
+      const userId = req.params.id;
+
+      const result = await knex('User').delete('id')
+        .where('id', userId)
+
+      return res.json(result).end();
+
+    } catch(e) {
+      console.error(e);
+      res.status(500).end();
+    }
+
+  }
+
 }
 
 module.exports = new UserController()

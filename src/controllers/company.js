@@ -23,7 +23,7 @@ class CompanyController {
 
       const companyId = req.params.id;
 
-      const result = await knex('Company').select('*')
+      const [result] = await knex('Company').select('*')
         .where('id', companyId)
 
       if(result.length < 1) {

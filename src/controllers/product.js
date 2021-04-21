@@ -31,8 +31,16 @@ class ProductController {
 
       const productId = req.params.id;
 
-      const result = await knex('Product').select('*')
-        .where('id', productId)
+      const [result] = await knex('Product')
+        .select('Product.id')
+        .select('Product.description')
+        .select('Category.description as category')
+        .select('Company.name as provider')
+        .select('Product.price')
+        .select('Product.stock_quantity as quantity')
+        .innerJoin('Category', 'Product.category_id', 'Category.id')
+        .innerJoin('Company', 'Product.provider_id', 'Company.id')
+        .where('Product.id', productId);
 
       if(result.length < 1) {
         return res.status(404).end();

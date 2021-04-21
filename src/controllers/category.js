@@ -23,7 +23,7 @@ class CategoryController {
 
       const categoryId = req.params.id;
 
-      const result = await knex('Category').select('*')
+      const [result] = await knex('Category').select('*')
         .where('id', categoryId)
 
       if(result.length < 1) {
