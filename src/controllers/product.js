@@ -46,7 +46,7 @@ class ProductController {
     try {
 
       const product = req.body;
-      const result = await knex('Product').insert(product, 'id')
+      const result = await knex('Product').insert(product)
 
       return res.json(result).end();
 
