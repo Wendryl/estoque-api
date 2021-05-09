@@ -8,6 +8,10 @@ class ProductController {
 
       const result = await knex('Product')
         .select('Product.*')
+        .select('Company.name as provider_name')
+        .select('Category.description as category')
+        .innerJoin('Company', 'Company.id', 'Product.provider_id')
+        .innerJoin('Category', 'Category.id', 'Product.category_id')
 
       return res.json(result).end();
 
@@ -26,7 +30,10 @@ class ProductController {
 
       const [result] = await knex('Product')
         .select('Product.*')
-        .where('Product.id', productId);
+        .select('Company.name as provider_name')
+        .select('Category.description as category')
+        .innerJoin('Company', 'Company.id', 'Product.provider_id')
+        .innerJoin('Category', 'Category.id', 'Product.category_id')
 
       if(result.length < 1) {
         return res.status(404).end();
