@@ -43,8 +43,8 @@ class CategoryController {
 
     try {
 
-      const product = req.body;
-      const result = await knex('Category').insert(product, 'id')
+      const category = req.body;
+      const result = await knex('Category').insert(category)
 
       return res.json(result).end();
 
@@ -60,9 +60,9 @@ class CategoryController {
     try {
 
       const categoryId = req.params.id;
-      const product = req.body;
+      const category = req.body;
 
-      const result = await knex('Category').update(product)
+      const result = await knex('Category').update(category)
         .where('id', categoryId)
 
       return res.json(result).end();
