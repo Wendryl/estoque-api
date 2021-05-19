@@ -1,6 +1,6 @@
 const express = require('express');
-const user = require('../controllers/user');
 const router = express.Router();
+const user = require('../controllers/user');
 const auth = require('../controllers/auth');
 const product = require('../controllers/product');
 const company = require('../controllers/company');
@@ -28,6 +28,13 @@ router.get('/categories/:id', auth.verifyToken, category.find);
 router.post('/categories', auth.verifyToken, category.store);
 router.put('/categories/:id', auth.verifyToken, category.alter);
 router.delete('/categories/:id', auth.verifyToken, category.destroy);
+
+// Users
+router.get('/users', auth.verifyToken, user.list);
+router.get('/users/:id', auth.verifyToken, user.find);
+router.post('/users', auth.verifyToken, user.store);
+router.put('/users/:id', auth.verifyToken, user.alter);
+router.delete('/users/:id', auth.verifyToken, user.destroy);
 
 
 module.exports = router 

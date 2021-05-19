@@ -76,7 +76,7 @@ class UserController {
         .innerJoin('Profile', 'Profile.id', 'User.profile_id')
         .where('User.id', userId);
 
-      if(result.length < 1) {
+      if(!result) {
         return res.status(404).end();
       }
 
@@ -94,7 +94,7 @@ class UserController {
     try {
 
       const user = req.body;
-      const result = await knex('User').insert(user, 'id')
+      const result = await knex('User').insert(user)
 
       return res.json(result).end();
 
