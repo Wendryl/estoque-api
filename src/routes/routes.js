@@ -36,5 +36,11 @@ router.post('/users', auth.verifyToken, user.store);
 router.put('/users/:id', auth.verifyToken, user.alter);
 router.delete('/users/:id', auth.verifyToken, user.destroy);
 
+// Customers
+router.get('/customers', auth.verifyToken, user.list);
+router.get('/customers/:id', auth.verifyToken, user.find);
+router.post('/customers', auth.verifyToken, user.store);
+router.put('/customers/:id', auth.verifyToken, user.alter);
+router.delete('/customers/:id', auth.verifyToken, user.destroy);
 
 module.exports = router 
