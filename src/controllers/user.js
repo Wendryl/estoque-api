@@ -39,15 +39,7 @@ class UserController {
     try {
 
       const result = await knex('User')
-        .select('User.id')
-        .select('Profile.description as profile')
-        .select('User.name')
-        .select('User.neighborhood')
-        .select('User.city')
-        .select('User.uf')
-        .select('User.email')
-        .select('User.phone')
-        .innerJoin('Profile', 'Profile.id', 'User.profile_id');
+        .select('User.*')
 
       return res.json(result).end();
 
@@ -65,15 +57,7 @@ class UserController {
       const userId = req.params.id;
 
       const [result] = await knex('User')
-        .select('User.id')
-        .select('Profile.description as profile')
-        .select('User.name')
-        .select('User.neighborhood')
-        .select('User.city')
-        .select('User.uf')
-        .select('User.email')
-        .select('User.phone')
-        .innerJoin('Profile', 'Profile.id', 'User.profile_id')
+        .select('User.*')
         .where('User.id', userId);
 
       if(!result) {
@@ -112,7 +96,7 @@ class UserController {
       const userId = req.params.id;
       const user = req.body;
 
-      const result = await knex('Product').update(user)
+      const result = await knex('User').update(user)
         .where('id', userId)
 
       return res.json(result).end();
