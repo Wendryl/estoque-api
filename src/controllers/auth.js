@@ -17,7 +17,10 @@ class Auth {
 
     try {
 
-      jwt.verify(token, process.env.JWT_SECRET)
+      const jwtData = jwt.verify(token, process.env.JWT_SECRET)
+      const idUser = jwtData.userValid.id;
+
+      req.idUser = idUser;
 
       next();
 

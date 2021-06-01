@@ -26,7 +26,7 @@ class CategoryController {
       const [result] = await knex('Category').select('*')
         .where('id', categoryId)
 
-      if(result.length < 1) {
+      if(!result) {
         return res.status(404).end();
       }
 

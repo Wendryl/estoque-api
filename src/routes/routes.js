@@ -5,6 +5,8 @@ const auth = require('../controllers/auth');
 const product = require('../controllers/product');
 const company = require('../controllers/company');
 const category  = require('../controllers/category');
+const purchase = require('../controllers/purchase');
+const sale = require('../controllers/sale');
 
 router.post('/auth', user.authenticate);
 
@@ -42,5 +44,15 @@ router.get('/customers/:id', auth.verifyToken, user.find);
 router.post('/customers', auth.verifyToken, user.store);
 router.put('/customers/:id', auth.verifyToken, user.alter);
 router.delete('/customers/:id', auth.verifyToken, user.destroy);
+
+// // Purchases
+// router.get('/purchases', auth.verifyToken, purchase.list);
+// router.get('/purchases/:id', auth.verifyToken, purchase.find);
+// router.post('/purchases', auth.verifyToken, purchase.list);
+
+// Sales
+router.get('/sales', auth.verifyToken, sale.list);
+router.get('/sales/:id', auth.verifyToken, sale.find);
+router.post('/sales', auth.verifyToken, sale.store);
 
 module.exports = router 

@@ -26,7 +26,7 @@ class CompanyController {
       const [result] = await knex('Company').select('*')
         .where('id', companyId)
 
-      if(result.length < 1) {
+      if(!result) {
         return res.status(404).end();
       }
 

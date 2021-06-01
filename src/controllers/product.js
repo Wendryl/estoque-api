@@ -34,8 +34,9 @@ class ProductController {
         .select('Category.description as category')
         .innerJoin('Company', 'Company.id', 'Product.provider_id')
         .innerJoin('Category', 'Category.id', 'Product.category_id')
+        .where('Product.id', productId)
 
-      if(result.length < 1) {
+      if(!result) {
         return res.status(404).end();
       }
 
@@ -53,7 +54,7 @@ class ProductController {
     try {
 
       const product = req.body;
-      const result = await knex('Product').insert(product)
+      const result = await knex('Product').insert(product);
 
       return res.json(result).end();
 
