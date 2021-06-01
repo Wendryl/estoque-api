@@ -46,9 +46,9 @@ router.put('/customers/:id', auth.verifyToken, user.alter);
 router.delete('/customers/:id', auth.verifyToken, user.destroy);
 
 // // Purchases
-// router.get('/purchases', auth.verifyToken, purchase.list);
-// router.get('/purchases/:id', auth.verifyToken, purchase.find);
-// router.post('/purchases', auth.verifyToken, purchase.list);
+router.get('/purchases', auth.verifyToken, purchase.list);
+router.get('/purchases/:id', auth.verifyToken, purchase.find);
+router.post('/purchases', auth.verifyToken, purchase.store);
 
 // Sales
 router.get('/sales', auth.verifyToken, sale.list);
